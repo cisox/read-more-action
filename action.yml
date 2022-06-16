@@ -1,0 +1,25 @@
+name: 'Read More Truncate Action'
+author: 'Brandon Peters'
+description: "Truncates text by line count or character count and optionally adds a 'read more' line at the end"
+inputs:
+  text:
+    description: 'Text to truncate'
+    required: true
+  max_lines:
+    description: 'Maximum number of lines to keep'
+    required: false
+  max_chars:
+    description: 'Maximum number of characters to keep'
+    required: false
+  read_more:
+    description: 'Read More line to append to bottom of the output'
+    required: false
+outputs:
+  text:
+    description: 'Truncated text'
+runs:
+  using: 'node12'
+  main: 'index.js'
+branding:
+  icon: 'heart'
+  color: 'red'

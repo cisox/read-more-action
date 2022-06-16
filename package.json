@@ -1,0 +1,25 @@
+{
+  "name": "read-more-action",
+  "version": "1.0.0",
+  "description": "GitHub Action to truncate text at a certain line count and add a read more link",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cisox/read-more-action.git"
+  },
+  "keywords": [
+    "truncate"
+  ],
+  "author": "Brandon Peters",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cisox/read-more-action/issues"
+  },
+  "homepage": "https://github.com/cisox/read-more-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4"
+  }
+}

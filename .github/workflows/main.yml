@@ -1,0 +1,34 @@
+name: CICD
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    needs: test
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Release
+        id: release
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update major version tag
+        if: steps.release.outputs.new_release_published == 'true'
+        env:
+          TAG: v${{ steps.release.outputs.new_release_major_version }}
+        run: |
+          git tag --force "$TAG"
+          git push --force origin "$TAG"
