@@ -15,23 +15,11 @@ const truncateByCharacters = (lines, maxCharacters, readMore) => {
         output.push(lines[i]);
     }
 
-    if (readMore) {
-        output.push('');
-        output.push(readMore);
-    }
-
     return output;
 };
 
 const truncateByLines = (lines, maxLines, readMore) => {
-    let output = lines.slice(0, maxLines - (readMore ? 2 : 0));
-
-    if (readMore) {
-        output.push('');
-        output.push(readMore);
-    }
-
-    return output;
+    return lines.slice(0, maxLines - (readMore ? 2 : 0));
 };
 
 try {
@@ -45,6 +33,11 @@ try {
         lines = truncateByLines(lines, maxLines, readMore);
     } else if (maxCharacters) {
         lines = truncateByCharacters(lines, maxCharacters, readMore);
+    }
+
+    if (readMore) {
+        lines.push('');
+        lines.push(readMore);
     }
 
     core.setOutput('text', lines.join('\n'));
